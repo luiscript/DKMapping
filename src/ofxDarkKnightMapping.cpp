@@ -29,6 +29,8 @@ void ofxDarkKnightMapping::setup()
     drawFbo = drawMesh = false;
     fboOutput = fboInput = nullptr;
     scaleX = scaleY = 0.25;
+    addInputConnection(ConnectionType::DK_FBO);
+    addOutputConnection(ConnectionType::DK_FBO);
 }
 
 void ofxDarkKnightMapping::update()
@@ -42,8 +44,7 @@ void ofxDarkKnightMapping::update()
         tex_.bind();
         mesh_->drawMesh();
         tex_.unbind();
-        fboOutput->end();
-        
+        fboOutput->end();   
     }
 }
 
@@ -77,7 +78,7 @@ void ofxDarkKnightMapping::setFbo(ofFbo * fboPtr)
     if(fboPtr != nullptr)
     {
         fboOutput = new ofFbo;
-        fboOutput->allocate(fboInput->getWidth(), fboInput->getWidth(), GL_RGBA, 4);
+        fboOutput->allocate(fboInput->getWidth(), fboInput->getWidth(), GL_RGBA);
         fboOutput->begin();
         ofClear(0, 0, 0);
         fboOutput->end();
@@ -107,16 +108,6 @@ ofFbo * ofxDarkKnightMapping::getFbo()
     return fboOutput;
 }
 
-
-void ofxDarkKnightMapping::drawMasterOutput()
-{
-    drawOutputConnection();
-}
-
-void ofxDarkKnightMapping::drawMasterInput()
-{
-    drawInputConnection();
-}
 
 void ofxDarkKnightMapping::addModuleParameters()
 {
