@@ -88,7 +88,8 @@ void ofxDarkKnightMapping::setFbo(ofFbo * fboPtr)
         
         tex_ = fboInput->getTexture();
         mesh_ = make_shared<ofxMeshWarp>();
-        mesh_->setup(2,2,fboInput->getWidth(),fboInput->getHeight());
+    
+        mesh_->setup(ofRectangle(2,2,fboInput->getWidth(),fboInput->getHeight()), 2, 2);
         mesh_->setUVRect(ofRectangle(0,0, tex_.getWidth(), tex_.getHeight()));
         controller_.add(mesh_);
         controller_.disable();
