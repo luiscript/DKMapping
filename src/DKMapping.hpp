@@ -20,16 +20,16 @@
  SOFTWARE.
  */
 
-#ifndef warping_hpp
-#define warping_hpp
+#ifndef DKMapping_hpp
+#define DKMapping_hpp
 
-#include "module.hpp"
-#include "wireConnection.hpp"
+#include "DKModule.hpp"
+#include "DKWireConnection.hpp"
 #include "ofxMeshWarp.h"
 #include "ofxMeshWarpManagedController.h"
 
 
-class ofxDarkKnightMapping : public Module{
+class DKMapping : public DKModule{
 private:
     ofFbo * fboInput;
     ofFbo * fboOutput;
@@ -51,4 +51,4 @@ public:
 };
 
 
-#endif /* warping_hpp */
+#endif /* DKMapping_hpp */

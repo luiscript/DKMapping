@@ -20,20 +20,20 @@
  SOFTWARE.
  */
 
-#include "ofxDarkKnightMapping.hpp"
+#include "DKMapping.hpp"
 #include "ofxMeshWarpIO.h"
 using namespace std;
 
-void ofxDarkKnightMapping::setup()
+void DKMapping::setup()
 {
     drawFbo = drawMesh = false;
     fboOutput = fboInput = nullptr;
     scaleX = scaleY = 0.25;
-    addInputConnection(ConnectionType::DK_FBO);
-    addOutputConnection(ConnectionType::DK_FBO);
+    addInputConnection(DKConnectionType::DK_FBO);
+    addOutputConnection(DKConnectionType::DK_FBO);
 }
 
-void ofxDarkKnightMapping::update()
+void DKMapping::update()
 {
     if (drawFbo) {
         tex_ = fboInput->getTexture();
@@ -48,7 +48,7 @@ void ofxDarkKnightMapping::update()
     }
 }
 
-void ofxDarkKnightMapping::draw()
+void DKMapping::draw()
 {
     if(drawFbo)
     {
@@ -72,7 +72,7 @@ void ofxDarkKnightMapping::draw()
     
 }
 
-void ofxDarkKnightMapping::setFbo(ofFbo * fboPtr)
+void DKMapping::setFbo(ofFbo * fboPtr)
 {
     fboInput = fboPtr;
     if(fboPtr != nullptr)
@@ -104,18 +104,18 @@ void ofxDarkKnightMapping::setFbo(ofFbo * fboPtr)
     scaleY = 0.5;
 }
 
-ofFbo * ofxDarkKnightMapping::getFbo()
+ofFbo * DKMapping::getFbo()
 {
     return fboOutput;
 }
 
 
-void ofxDarkKnightMapping::addModuleParameters()
+void DKMapping::addModuleParameters()
 {
-    gui->addToggle("SHOW MESH CONTROLLER")->onToggleEvent(this, &ofxDarkKnightMapping::onMappingMode);
+    gui->addToggle("SHOW MESH CONTROLLER")->onToggleEvent(this, &DKMapping::onMappingMode);
 }
 
-void ofxDarkKnightMapping::onMappingMode(ofxDatGuiToggleEvent e)
+void DKMapping::onMappingMode(ofxDatGuiToggleEvent e)
 {
     drawMesh = e.target->getChecked();
     drawMesh ? controller_.enable() : controller_.disable();
