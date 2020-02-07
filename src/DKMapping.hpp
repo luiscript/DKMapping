@@ -36,6 +36,8 @@ private:
     bool drawFbo;
     float scaleX;
     float scaleY;
+	float translateX;
+	float translateY;
     std::shared_ptr<ofxMeshWarp> mesh_;
     ofxMeshWarpController controller_;
     ofTexture tex_;

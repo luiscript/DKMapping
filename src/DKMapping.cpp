@@ -53,21 +53,18 @@ void DKMapping::draw()
     if(drawFbo)
     {
         ofPushMatrix();
-
         ofTranslate(gui->getPosition().x, gui->getPosition().y + 70);
         ofScale(scaleX, scaleY);
         fboOutput->draw(0,0);
-        
         ofPopMatrix();
-    
         
         if(drawMesh)
         {
             controller_.setScale(scaleX);
-            controller_.setTranslation(gui->getPosition().x, gui->getPosition().y + 70);
+			controller_.setTranslationGui(getTranslation().x, getTranslation().y);
+            controller_.setTranslation(gui->getPosition().x + getTranslation().x, gui->getPosition().y  + getTranslation().y + 70);
             controller_.draw();
         }
-        
     }
     
 }
